@@ -49,9 +49,7 @@ public class LinkedList
 
     public Node removeFront()
     {
-        //this removes and returns the Node that is currently sitting at the
-        //front of the list.  The new front of the list, should be the old
-        //second node or null in the event it was a 1-list
+
         Node nodeToReturn = this.head;
         if(this.head != null)
         {
@@ -59,5 +57,42 @@ public class LinkedList
         }
         nodeToReturn.setNextNode(null);
         return nodeToReturn;
+    }
+
+    public void addEnd(String value)
+    {
+        Node n = new Node(value);
+        if (this.head == null)
+        {
+            this.head = n;
+            return;
+        }
+        Node currNode = this.head;
+        while (currNode.getNextNode() != null)
+            currNode = currNode.getNextNode();
+        currNode.setNextNode(n);
+    }
+
+    public Node removeEnd()
+    {
+        if (this.head == null)
+        {
+            return null;
+        }
+        if (this.head.getNextNode() == null)
+        {
+            Node n = this.head;
+            this.head = null;
+            return n;
+        }
+        Node nodeA = this.head;
+        Node nodeB = nodeA.getNextNode();
+        while (nodeB != null && nodeB.getNextNode() != null)
+        {
+            nodeA = nodeA.getNextNode();
+            nodeB = nodeB.getNextNode();
+        }
+        nodeA.setNextNode(null);
+        return nodeB;
     }
 }

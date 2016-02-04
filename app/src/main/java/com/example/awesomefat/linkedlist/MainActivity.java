@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity
         ll.display();
         ll.removeFront();
         ll.display();
+        ll.removeEnd();
+        ll.removeEnd();
+        ll.display();
+        ll.addEnd("5");
+        ll.addEnd("6");
+        ll.display();
 
         /*
         View v;
