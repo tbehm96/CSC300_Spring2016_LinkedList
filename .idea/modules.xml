@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CSC300_Spring2016_LinkedList.iml" filepath="$PROJECT_DIR$/CSC300_Spring2016_LinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/homework6.iml" filepath="$PROJECT_DIR$/homework6.iml" />
     </modules>
   </component>
 </project>

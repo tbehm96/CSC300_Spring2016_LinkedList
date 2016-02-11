@@ -13,7 +13,7 @@ public class Node
     private String payload;
     private Node nextNode;
     private TextView valueLabel;
-    private LinearLayout layout;
+    private LinearLayout theLayout;
 
     public Node(String payload)
     {
@@ -22,11 +22,29 @@ public class Node
 
     }
 
+    public void textClicked(View v)
+    {
+        System.out.println("***** Text Was Clicked: " + this.payload);
+    }
+
     public void display(LinearLayout layout)
     {
+        final Node myself = this;
+        this.theLayout = layout;
         View v = ListCore.inflater.inflate(R.layout.node, null);
-        TextView tf = (TextView) v.findViewById(R.id.theValueTF);
-        tf.setText(this.payload);
+        this.valueLabel = (TextView) v.findViewById(R.id.theValueTF);
+        this.valueLabel.setText(this.payload);
+        this.valueLabel.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                System.out.println("***** Text Was Clicked: " + payload);
+                System.out.println("**** Position = " + ListCore.ll.indexOf(myself));
+                ListCore.ll.removeAtIndex(ListCore.ll.indexOf(myself));
+                ListCore.ll.display();
+            }
+        });
         layout.addView(v);
 
         if(this.nextNode != null)

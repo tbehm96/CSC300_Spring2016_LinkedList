@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 public class LinkedList
 {
     private Node head;
@@ -14,6 +15,29 @@ public class LinkedList
         this.head = null;
         this.layout = layout;
         this.count = 0;
+    }
+
+    public int indexOf(Node n)
+    {
+        if(this.head != null)
+        {
+            int pos = 0;
+            Node currNode = this.head;
+            do
+            {
+                if(currNode == n)
+                {
+                    return pos;
+                }
+                else
+                {
+                    pos++;
+                    currNode = currNode.getNextNode();
+                }
+            }
+            while(currNode != null);
+        }
+        return -1;
     }
 
     public void display()
@@ -36,9 +60,14 @@ public class LinkedList
         this.layout.addView(v);
     }
 
-    public Node getAtIndex(int i)
+    public Node getAtIndex(int index)
     {
-        return null;
+        Node n = this.head;
+        for (int i = 0; i < index; i++)
+        {
+            n = n.getNextNode();
+        }
+        return n;
     }
 
     public int count()
@@ -74,7 +103,6 @@ public class LinkedList
             nodeToReturn.setNextNode(null);
             this.count--;
         }
-
         return nodeToReturn;
     }
 
@@ -97,6 +125,62 @@ public class LinkedList
         }
     }
 
+    public Node removeAtIndex(int index)
+    {
+        if(head == null)
+        {
+            return null;
+        }
+        else
+        {
+            Node nodeToReturn = head;
+            if(head.getNextNode() == null)
+            {
+                if (index == 0)
+                {
+                    return removeFront();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                if (index == 0)
+                {
+                    return removeFront();
+                }
+                Node currNode = head;
+                for (int i = 0; i < index - 1; i++)
+                {
+                    if (currNode.getNextNode() != null && currNode.getNextNode().getNextNode() != null)
+                    {
+                        currNode = currNode.getNextNode();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                nodeToReturn = currNode.getNextNode();
+                if (nodeToReturn.getNextNode() == null)
+                {
+                    count--;
+                    currNode.setNextNode(null);
+                    return nodeToReturn;
+                }
+                else
+                {
+                    count--;
+                    currNode.setNextNode(nodeToReturn.getNextNode());
+                    nodeToReturn.setNextNode(null);
+                    return nodeToReturn;
+                }
+            }
+        }
+    }
+
     public Node removeEnd()
     {
         if(head == null)
@@ -107,7 +191,6 @@ public class LinkedList
         {
             this.count--;
             Node nodeToReturn = head;
-
             if(head.getNextNode() == null)
             {
                 head = null;
