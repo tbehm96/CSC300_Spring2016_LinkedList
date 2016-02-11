@@ -22,6 +22,7 @@ public class Node
 
     }
 
+
     public void textClicked(View v)
     {
         System.out.println("***** Text Was Clicked: " + this.payload);
